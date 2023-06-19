@@ -16,9 +16,15 @@
   örnek output: ""
 */
 
-function dosyaAdiniBul(/* kodlar buraya */) {
-  // kodlar buraya
+function dosyaAdiniBul(path) {
+  if(path === ""){
+    return "";
+  }
+  let splitted = path.split("/");
+  return splitted[splitted.length - 1];
 }
+
+console.log(dosyaAdiniBul("C:/Users/johnsmith/Music/Beethoven_5.mp3"))
 
 /*
   GÖREV 2
@@ -38,9 +44,32 @@ function dosyaAdiniBul(/* kodlar buraya */) {
   örnek output: 104
 */
 
-function ortalamaBul(/* kodlar buraya */) {
-  // kodlar buraya
+function ortalamaBul(numbers) {
+  if (numbers.length === 0) {
+    return null;
+  }
+
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  
+  const average = sum / numbers.length;
+  return average;
 }
+
+console.log(ortalamaBul([]));
+
+/* 
+
+Veya üstteki görevi ".reduce()" metodu ile de çözebiliriz. Bunun için 53. satırdaki for döngüsü yerine reduce() yöntemi kullanırız. 
+Aslında bu yöntem for döngüsüne göre biraz daha az satır alır ve bu da bizim kodumuz için daha yararlıdır.
+
+let sum = numbers.reduce((sum,number) => {
+  return sum += number
+},0)
+
+*/
 
 /*
   GÖREV 3
@@ -62,9 +91,26 @@ function ortalamaBul(/* kodlar buraya */) {
   örnek output: [109, 216, 288, 143, 185, 194]
 */
 
-function ortalamadanBuyukleriBul(/* kodlar buraya */) {
-  // kodlar buraya
+
+function ortalamadanBuyukleriBul(numbers, ortalamaBul) {
+  if (numbers == "") {
+    return null;
+  } else if (numbers.length == 1) {
+    return numbers; 
+  }
+
+  let ortalama = ortalamaBul(numbers);
+
+  let sonuc = numbers.filter(element => {
+    return element > ortalama;
+  });
+
+  return sonuc;
 }
+
+console.log(ortalamadanBuyukleriBul([40], ortalamaBul));
+
+
 
 /* !!!! Burdan aşağısını değiştirmeyin !!!! */
 function as() {
